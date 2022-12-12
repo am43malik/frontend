@@ -164,43 +164,47 @@ const Stockin = () => {
               <h1 className='text-center my-8 font-bold text-2xl'>Stock In</h1>
             <Container>
             <Stack direction="row" spacing={2}>
+        <TextField type="number" sx={{width:200}} id="outlined-basic" label="Item code " variant="outlined"  />
+        <TextField type="number" sx={{width:200}} id="outlined-basic" label="Supplier Doc No" variant="outlined"  />
+
             <Autocomplete
           disablePortal
           id="combo-box-demo"
           options={top100Films}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Add Prodcts" />}
-        />
-            <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={top100Films}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField  {...params} label="Products Type" />}
+          sx={{ width: 200 }}
+          renderInput={(params) => <TextField {...params} label="Supplire" />}
         />
             <Autocomplete
           disablePortal
           id="combo-box-demo"
           options={top100Films}
           sx={{ width: 200 }}
-          renderInput={(params) => <TextField {...params} label="Products Unit" />}
+          renderInput={(params) => <TextField  {...params} label="Add Products " />}
         />
-        <TextField type="number" sx={{width:200}} id="outlined-basic" label="Expiry" variant="outlined"  />
+          
+            <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={top100Films}
+          sx={{ width: 200 }}
+          renderInput={(params) => <TextField {...params} label="Product Type" />}
+        />
     
         </Stack>
         <Stack direction="row" spacing={2} mt="10px">
-        <TextField type="number" sx={{width:300}} id="outlined-basic" label="Price" variant="outlined"  />
     
         <Autocomplete
           disablePortal
           id="combo-box-demo"
           options={top100Films}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="SUPLIRE" />}
+          sx={{ width: 200 }}
+          renderInput={(params) => <TextField {...params} label="Product Unit" />}
           
         />
+        <TextField type="number" sx={{width:200}} id="outlined-basic" label="Price" variant="outlined"  />
         <TextField type="number" sx={{width:200}} id="outlined-basic" label="QUANTITY" variant="outlined"  />
-        <TextField type="number" sx={{width:200}} id="outlined-basic" label="Supplier Doc No" variant="outlined"  />
+        <TextField type="number" sx={{width:200}} id="outlined-basic" label="Expiry" variant="outlined"  />
+
     
     
     
@@ -211,7 +215,7 @@ const Stockin = () => {
         </div>
     
             </Container>
-    
+    <div className='mx-3'>
            
      <div style={{ height: 800, width: '100%', marginTop:'10px', padding:'5px'}}>
           <DataGrid
@@ -223,9 +227,9 @@ const Stockin = () => {
           />
         </div>
     
-    
+        </div>
+      <center> <button type="submit" className=" text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-10 mb-1 mt-1 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 relative ">Print </button></center> 
         </div>
       )
 }
-
 export default Stockin

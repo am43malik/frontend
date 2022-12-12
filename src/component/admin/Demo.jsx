@@ -1,232 +1,46 @@
-import { Autocomplete, Button, Container, Stack, TextField } from '@mui/material'
 import React from 'react'
-import { DataGrid } from '@mui/x-data-grid';
-const top100Films = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-    { label: 'The Dark Knight', year: 2008 },
-    { label: '12 Angry Men', year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: 'Pulp Fiction', year: 1994 },
-    {
-      label: 'The Lord of the Rings: The Return of the King',
-      year: 2003,
-    },
-    { label: 'The Good, the Bad and the Ugly', year: 1966 },
-    { label: 'Fight Club', year: 1999 },
-    {
-      label: 'The Lord of the Rings: The Fellowship of the Ring',
-      year: 2001,
-    },
-    {
-      label: 'Star Wars: Episode V - The Empire Strikes Back',
-      year: 1980,
-    },
-    { label: 'Forrest Gump', year: 1994 },
-    { label: 'Inception', year: 2010 },
-    {
-      label: 'The Lord of the Rings: The Two Towers',
-      year: 2002,
-    },
-    { label: "One Flew Over the Cuckoo's Nest", year: 1975 },
-    { label: 'Goodfellas', year: 1990 },
-    { label: 'The Matrix', year: 1999 },
-    { label: 'Seven Samurai', year: 1954 },
-    {
-      label: 'Star Wars: Episode IV - A New Hope',
-      year: 1977,
-    },
-    { label: 'City of God', year: 2002 },
-    { label: 'Se7en', year: 1995 },
-    { label: 'The Silence of the Lambs', year: 1991 },
-    { label: "It's a Wonderful Life", year: 1946 },
-    { label: 'Life Is Beautiful', year: 1997 },
-    { label: 'The Usual Suspects', year: 1995 },
-    { label: 'Léon: The Professional', year: 1994 },
-    { label: 'Spirited Away', year: 2001 },
-    { label: 'Saving Private Ryan', year: 1998 },
-    { label: 'Once Upon a Time in the West', year: 1968 },
-    { label: 'American History X', year: 1998 },
-    { label: 'Interstellar', year: 2014 },
-    { label: 'Casablanca', year: 1942 },
-    { label: 'City Lights', year: 1931 },
-    { label: 'Psycho', year: 1960 },
-    { label: 'The Green Mile', year: 1999 },
-    { label: 'The Intouchables', year: 2011 },
-    { label: 'Modern Times', year: 1936 },
-    { label: 'Raiders of the Lost Ark', year: 1981 },
-    { label: 'Rear Window', year: 1954 },
-    { label: 'The Pianist', year: 2002 },
-    { label: 'The Departed', year: 2006 },
-    { label: 'Terminator 2: Judgment Day', year: 1991 },
-    { label: 'Back to the Future', year: 1985 },
-    { label: 'Whiplash', year: 2014 },
-    { label: 'Gladiator', year: 2000 },
-    { label: 'Memento', year: 2000 },
-    { label: 'The Prestige', year: 2006 },
-    { label: 'The Lion King', year: 1994 },
-    { label: 'Apocalypse Now', year: 1979 },
-    { label: 'Alien', year: 1979 },
-    { label: 'Sunset Boulevard', year: 1950 },
-    {
-      label: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
-      year: 1964,
-    },
-    { label: 'The Great Dictator', year: 1940 },
-    { label: 'Cinema Paradiso', year: 1988 },
-    { label: 'The Lives of Others', year: 2006 },
-    { label: 'Grave of the Fireflies', year: 1988 },
-    { label: 'Paths of Glory', year: 1957 },
-    { label: 'Django Unchained', year: 2012 },
-    { label: 'The Shining', year: 1980 },
-    { label: 'WALL·E', year: 2008 },
-    { label: 'American Beauty', year: 1999 },
-    { label: 'The Dark Knight Rises', year: 2012 },
-    { label: 'Princess Mononoke', year: 1997 },
-    { label: 'Aliens', year: 1986 },
-    { label: 'Oldboy', year: 2003 },
-    { label: 'Once Upon a Time in America', year: 1984 },
-    { label: 'Witness for the Prosecution', year: 1957 },
-    { label: 'Das Boot', year: 1981 },
-    { label: 'Citizen Kane', year: 1941 },
-    { label: 'North by Northwest', year: 1959 },
-    { label: 'Vertigo', year: 1958 },
-    {
-      label: 'Star Wars: Episode VI - Return of the Jedi',
-      year: 1983,
-    },
-    { label: 'Reservoir Dogs', year: 1992 },
-    { label: 'Braveheart', year: 1995 },
-    { label: 'M', year: 1931 },
-    { label: 'Requiem for a Dream', year: 2000 },
-    { label: 'Amélie', year: 2001 },
-    { label: 'A Clockwork Orange', year: 1971 },
-    { label: 'Like Stars on Earth', year: 2007 },
-    { label: 'Taxi Driver', year: 1976 },
-    { label: 'Lawrence of Arabia', year: 1962 },
-    { label: 'Double Indemnity', year: 1944 },
-    {
-      label: 'Eternal Sunshine of the Spotless Mind',
-      year: 2004,
-    },
-    { label: 'Amadeus', year: 1984 },
-    { label: 'To Kill a Mockingbird', year: 1962 },
-    { label: 'Toy Story 3', year: 2010 },
-    { label: 'Logan', year: 2017 },
-    { label: 'Full Metal Jacket', year: 1987 },
-    { label: 'Dangal', year: 2016 },
-    { label: 'The Sting', year: 1973 },
-    { label: '2001: A Space Odyssey', year: 1968 },
-    { label: "Singin' in the Rain", year: 1952 },
-    { label: 'Toy Story', year: 1995 },
-    { label: 'Bicycle Thieves', year: 1948 },
-    { label: 'The Kid', year: 1921 },
-    { label: 'Inglourious Basterds', year: 2009 },
-    { label: 'Snatch', year: 2000 },
-    { label: '3 Idiots', year: 2009 },
-    { label: 'Monty Python and the Holy Grail', year: 1975 },
-  ];
-  
-const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'productsname', headerName: 'Products name', width: 130 },
-    { field: 'productstype', headerName: 'Products type', width: 130 },
-    {field: 'unit',headerName: 'unit',type: 'number',width: 90,},
-    {field: 'Expiry',headerName: 'Expiry',type: 'number',width: 90,},
-    {field: 'Price',headerName: 'Price',type: 'number',width: 90,},
-    {field: 'Suplire',headerName: 'Suplire name',type: 'number',width: 130,},
-    {field: 'Quantity',headerName: 'Quantity',type: 'number',width: 90,},
-    {field: 'total',headerName: 'total',type: 'number',width: 90,},
-  
-  ];
-  const rows = [
-    { id: 1, productstype: 'Durg', productsname: 'Medicine1', unit: 1.4 },
-    { id: 2, productstype: 'injection', productsname: 'Medicine2', unit: 1.5 },
-    { id: 3, productstype: 'injection', productsname: 'Medicine3', unit: 3.5 },
-    { id: 4, productstype: 'injection', productsname: 'Medicine4', unit: 2.5 },
-    { id: 5, productstype: 'Durg', productsname: 'Medicine5', unit: 5.5 },
-    { id: 6, productstype: 'Durg', productsname: 'Medicine1', unit: 1.4 },
-    { id: 7, productstype: 'injection', productsname: 'Medicine2', unit: 1.5 },
-    { id: 8, productstype: 'injection', productsname: 'Medicine3', unit: 3.5 },
-    { id: 9, productstype: 'injection', productsname: 'Medicine4', unit: 2.5 },
-    { id: 10, productstype: 'Durg', productsname: 'Medicine5', unit: 5.5 },
-    { id: 11, productstype: 'Durg', productsname: 'Medicine1', unit: 1.4 },
-    { id: 12, productstype: 'injection', productsname: 'Medicine2', unit: 1.5 },
-    { id: 13, productstype: 'injection', productsname: 'Medicine3', unit: 3.5 },
-    { id: 14, productstype: 'injection', productsname: 'Medicine4', unit: 2.5 },
-    { id: 15, productstype: 'Durg', productsname: 'Medicine5', unit: 5.5 },
-  
-  ];
-const Demo = () => {
+import { Link } from 'react-router-dom'
+const Addgroups = () => {
   return (
-    <div className=''>
-        <div className='my-12'>
-          <h1 className='text-center  font-bold text-2xl'>Add Products</h1>
-        </div>
-        <Container>
-        <Stack direction="row" spacing={2}>
-        <Autocomplete
-      disablePortal
-      id="combo-box-demo"
-      options={top100Films}
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Add Prodcts" />}
-    />
-        <Autocomplete
-      disablePortal
-      id="combo-box-demo"
-      options={top100Films}
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField  {...params} label="Products Type" />}
-    />
-        <Autocomplete
-      disablePortal
-      id="combo-box-demo"
-      options={top100Films}
-      sx={{ width: 200 }}
-      renderInput={(params) => <TextField {...params} label="Products Unit" />}
-    />
-    <TextField type="number" sx={{width:200}} id="outlined-basic" label="Expiry" variant="outlined"  />
+    <div>
+    
+<div class='flex items-center justify-center mt-4'>
+  <Link to='/adminpanel'>  <button class="flex px-3 py-2 bg-blue-400 mr-1 text-white font-semibold rounded">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+        <span class="ml-1">Add user</span>
+    </button></Link>
 
-    </Stack>
-    <Stack direction="row" spacing={2} mt="10px">
-    <TextField type="number" sx={{width:300}} id="outlined-basic" label="Price" variant="outlined"  />
+   <Link to="/addproducts"> <button class="flex px-3 py-2 bg-red-400 mr-1 text-white font-semibold rounded">
+   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+</svg>
 
-    <Autocomplete
-      disablePortal
-      id="combo-box-demo"
-      options={top100Films}
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="SUPLIRE" />}
-      
-    />
-    <TextField type="number" sx={{width:200}} id="outlined-basic" label="QUANTITY" variant="outlined"  />
+        <span class="ml-1">Add Products</span>
+    </button></Link>
 
 
 
-    </Stack>
-    <div className='mt-3 ali'>
+    <Link to ="/Addsuppliers">    <button class="flex px-3 py-2 bg-orange-400 text-white font-semibold rounded">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg> 
 
-  <center>  <Button variant="contained" alignItems="center">Submit</Button></center> 
-    </div>
+        <span class="ml-1 ">Add supplier</span>
+    </button></Link>
+    <Link to="/Addloactaion">    <button class="flex px-3 mx-2 py-2 bg-red-400 text-white font-semibold rounded">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+  </svg>
 
-        </Container>
-
-       
- <div style={{ height: 400, width: '100%', marginTop:'10px', padding:'5px'}}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
-        // checkboxSelection
-      />
-    </div>
-
-
+        <span class="ml-1">Add Location</span>
+    </button> </Link>
+    
+</div>
     </div>
   )
 }
 
-export default Demo
+export default Addgroups

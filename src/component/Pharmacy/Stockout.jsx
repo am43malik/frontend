@@ -1,32 +1,142 @@
 import React from 'react'
+import { Autocomplete, Button, Container, Stack, TextField } from '@mui/material'
 
-import { Link } from 'react-router-dom'
-import logo from '../../images/logo1.jfif'
+
 import { DataGrid } from '@mui/x-data-grid';
-import { Container } from '@mui/material';
+const top100Films = [
+  { label: 'The Shawshank Redemption', year: 1994 },
+  { label: 'The Godfather', year: 1972 },
+  { label: 'The Godfather: Part II', year: 1974 },
+  { label: 'The Dark Knight', year: 2008 },
+  { label: '12 Angry Men', year: 1957 },
+  { label: "Schindler's List", year: 1993 },
+  { label: 'Pulp Fiction', year: 1994 },
+  {
+    label: 'The Lord of the Rings: The Return of the King',
+    year: 2003,
+  },
+  { label: 'The Good, the Bad and the Ugly', year: 1966 },
+  { label: 'Fight Club', year: 1999 },
+  {
+    label: 'The Lord of the Rings: The Fellowship of the Ring',
+    year: 2001,
+  },
+  {
+    label: 'Star Wars: Episode V - The Empire Strikes Back',
+    year: 1980,
+  },
+  { label: 'Forrest Gump', year: 1994 },
+  { label: 'Inception', year: 2010 },
+  {
+    label: 'The Lord of the Rings: The Two Towers',
+    year: 2002,
+  },
+  { label: "One Flew Over the Cuckoo's Nest", year: 1975 },
+  { label: 'Goodfellas', year: 1990 },
+  { label: 'The Matrix', year: 1999 },
+  { label: 'Seven Samurai', year: 1954 },
+  {
+    label: 'Star Wars: Episode IV - A New Hope',
+    year: 1977,
+  },
+  { label: 'City of God', year: 2002 },
+  { label: 'Se7en', year: 1995 },
+  { label: 'The Silence of the Lambs', year: 1991 },
+  { label: "It's a Wonderful Life", year: 1946 },
+  { label: 'Life Is Beautiful', year: 1997 },
+  { label: 'The Usual Suspects', year: 1995 },
+  { label: 'Léon: The Professional', year: 1994 },
+  { label: 'Spirited Away', year: 2001 },
+  { label: 'Saving Private Ryan', year: 1998 },
+  { label: 'Once Upon a Time in the West', year: 1968 },
+  { label: 'American History X', year: 1998 },
+  { label: 'Interstellar', year: 2014 },
+  { label: 'Casablanca', year: 1942 },
+  { label: 'City Lights', year: 1931 },
+  { label: 'Psycho', year: 1960 },
+  { label: 'The Green Mile', year: 1999 },
+  { label: 'The Intouchables', year: 2011 },
+  { label: 'Modern Times', year: 1936 },
+  { label: 'Raiders of the Lost Ark', year: 1981 },
+  { label: 'Rear Window', year: 1954 },
+  { label: 'The Pianist', year: 2002 },
+  { label: 'The Departed', year: 2006 },
+  { label: 'Terminator 2: Judgment Day', year: 1991 },
+  { label: 'Back to the Future', year: 1985 },
+  { label: 'Whiplash', year: 2014 },
+  { label: 'Gladiator', year: 2000 },
+  { label: 'Memento', year: 2000 },
+  { label: 'The Prestige', year: 2006 },
+  { label: 'The Lion King', year: 1994 },
+  { label: 'Apocalypse Now', year: 1979 },
+  { label: 'Alien', year: 1979 },
+  { label: 'Sunset Boulevard', year: 1950 },
+  {
+    label: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    year: 1964,
+  },
+  { label: 'The Great Dictator', year: 1940 },
+  { label: 'Cinema Paradiso', year: 1988 },
+  { label: 'The Lives of Others', year: 2006 },
+  { label: 'Grave of the Fireflies', year: 1988 },
+  { label: 'Paths of Glory', year: 1957 },
+  { label: 'Django Unchained', year: 2012 },
+  { label: 'The Shining', year: 1980 },
+  { label: 'WALL·E', year: 2008 },
+  { label: 'American Beauty', year: 1999 },
+  { label: 'The Dark Knight Rises', year: 2012 },
+  { label: 'Princess Mononoke', year: 1997 },
+  { label: 'Aliens', year: 1986 },
+  { label: 'Oldboy', year: 2003 },
+  { label: 'Once Upon a Time in America', year: 1984 },
+  { label: 'Witness for the Prosecution', year: 1957 },
+  { label: 'Das Boot', year: 1981 },
+  { label: 'Citizen Kane', year: 1941 },
+  { label: 'North by Northwest', year: 1959 },
+  { label: 'Vertigo', year: 1958 },
+  {
+    label: 'Star Wars: Episode VI - Return of the Jedi',
+    year: 1983,
+  },
+  { label: 'Reservoir Dogs', year: 1992 },
+  { label: 'Braveheart', year: 1995 },
+  { label: 'M', year: 1931 },
+  { label: 'Requiem for a Dream', year: 2000 },
+  { label: 'Amélie', year: 2001 },
+  { label: 'A Clockwork Orange', year: 1971 },
+  { label: 'Like Stars on Earth', year: 2007 },
+  { label: 'Taxi Driver', year: 1976 },
+  { label: 'Lawrence of Arabia', year: 1962 },
+  { label: 'Double Indemnity', year: 1944 },
+  {
+    label: 'Eternal Sunshine of the Spotless Mind',
+    year: 2004,
+  },
+  { label: 'Amadeus', year: 1984 },
+  { label: 'To Kill a Mockingbird', year: 1962 },
+  { label: 'Toy Story 3', year: 2010 },
+  { label: 'Logan', year: 2017 },
+  { label: 'Full Metal Jacket', year: 1987 },
+  { label: 'Dangal', year: 2016 },
+  { label: 'The Sting', year: 1973 },
+  { label: '2001: A Space Odyssey', year: 1968 },
+  { label: "Singin' in the Rain", year: 1952 },
+  { label: 'Toy Story', year: 1995 },
+  { label: 'Bicycle Thieves', year: 1948 },
+  { label: 'The Kid', year: 1921 },
+  { label: 'Inglourious Basterds', year: 2009 },
+  { label: 'Snatch', year: 2000 },
+  { label: '3 Idiots', year: 2009 },
+  { label: 'Monty Python and the Holy Grail', year: 1975 },
+];
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'productsname', headerName: 'Products name', width: 130 },
-  { field: 'productstype', headerName: 'Products type', width: 130 },
-  {
-    field: 'unit',
-    headerName: 'unit',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'Quantity',
-    headerName: 'Quantity',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'total',
-    headerName: 'total',
-    type: 'number',
-    width: 90,
-  },
+  { field: 'productstype', headerName: 'Suplire', width: 130 },
+  {field: 'unit',headerName: 'unit',type: 'Quantity',width: 90,},
+  {field: 'Quantity',headerName: 'Quantity',type: 'Selling price',width: 90,},
+  {field: 'total',headerName: 'total',type: 'number',width: 90,},
 
 ];
 
@@ -49,108 +159,63 @@ const rows = [
 
 ];
 const Stockout = () => {
-    return (
-        <div>
-        <div className=' ml-96'>
-        <section className=" ">
-            <h1 className='ml-48 mt-4 font-bold text-2xl'>Stock Out Products</h1>
-           <div className="p-6 space-y-4 md:space-y-9 sm:p-8">
-       
-               <form className="w-full max-w-lg">
-               <div class="flex flex-wrap -mx-3 mb-2">
+  return (
+    <div className=''>
+          <h1 className='text-center my-8 font-bold text-2xl'>Stock Out</h1>
+        <Container>
+        <Stack direction="row" spacing={2}>
+    <TextField type="number" sx={{width:200}} id="outlined-basic" label="Doc Number" variant="outlined"  />
+
+        <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={top100Films}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Suplire Name" />}
+    />
+        <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={top100Films}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField  {...params} label="Select Products" />}
+    />
+        <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={top100Films}
+      sx={{ width: 150 }}
+      renderInput={(params) => <TextField  {...params} label="Select Unit" />}
+    />
+    
+    <TextField type="number" sx={{width:200}} id="outlined-basic" label="Quantity" variant="outlined"  />
+    <TextField type="number" sx={{width:200}} id="outlined-basic" label="Selling price" variant="outlined"  />
+
+    </Stack>
  
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-            Select Products
-          </label>
-          <div class="relative">
-            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-              <option>Medicine</option>
-              <option>Injection</option>
-              <option>Drug</option>
-              <option>Disposable</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
-          </div>
-        </div>
-        {/* <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-            type
-          </label>
-          <div class="relative">
-            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-              <option>Medicine</option>
-              <option>Injection</option>
-              <option>Drug</option>
-              <option>Disposable</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
-          </div>
-        </div> */}
+    <div className='mt-3 ali'>
 
-      
+  <center>  <Button variant="contained" alignItems="center">Submit</Button></center> 
+    </div>
 
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-            Suplire
-          </label>
-          <div class="relative">
-            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-              <option>Dusri</option>
-              <option>Glovit</option>
-              <option>Fyafy</option>
-              
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
-          </div>
-        </div>
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-          QUANTITY
-          </label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="QUANTITY"/>
-        </div>
-        <div class="w-full md:w-full px-3 mb-6 md:mb-0">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-          Selling  Price
-          </label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Price"/>
-        </div>
-    
-      </div>
-    
-            </form>
-           </div>
-    
-    </section>
-    
-    <button className="bg-blue-500 px-4 py-2 absolute mt-[350px] ml-[70px] font-semibold text-white inline-flex items-center space-x-2 rounded" disabled>
-        
-    
-            <span>Sub Total= 878</span>
-        </button>
-     </div>
-    
-     {/* Here i am using Matrial UI Tabel */}
-    <Container>
-     <div style={{ height: 400, width: '100%' }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            rowsPerPageOptions={[10]}
-            // checkboxSelection
-          />
-        </div>
-    </Container>
-     </div>
-      )
+        </Container>
+
+       
+ <div style={{ height: 800, width: '100%', marginTop:'10px', padding:'5px'}}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
+        // checkboxSelection
+      />
+    </div>
+
+    <center> <button type="submit" className=" text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-10 mb-1 mt-1 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 relative ">Print </button></center> 
+
+
+    </div>
+  )
 }
 
 export default Stockout

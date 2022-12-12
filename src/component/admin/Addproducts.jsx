@@ -1,6 +1,4 @@
-import { Autocomplete, Button, Container, Stack, TextField } from '@mui/material'
 import React from 'react'
-import { DataGrid } from '@mui/x-data-grid';
 import { Link } from 'react-router-dom'
 import logo from '../../images/logo1.jfif'
 
@@ -30,7 +28,7 @@ const Addproducts = () => {
                   
         
                   <div>
-                      <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Password</label>
+                      <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Unit</label>
                       <input type="text" name="unit" id="password" placeholder="Enter Unit Number" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
                   </div>
                   <div className="flex items-center justify-between">

@@ -1,10 +1,14 @@
 import React from 'react'
 import { DataGrid } from '@mui/x-data-grid';
+
 const columns = [
-    { field: 'SR NO', headerName: 'ID', width: 70 },
+    { field: 'id', headerName: 'SR NO', width: 70 },
+    { field: 'Itemcode', headerName: 'Item Cod', width: 130 },
     { field: 'firstName', headerName: 'porducts Name', width: 130 },
-    { field: 'lastName', headerName: 'Unit', width: 130 },
-    {field: 'age',headerName: 'Age',type: 'number',width: 90,},
+    { field: 'productstype', headerName: 'porducts Type', width: 130 },
+    { field: 'lastName', headerName: 'Supplier Name', width: 130 },
+    {field: 'age',headerName: 'quantity',type: 'number',width: 90,},
+    {field: 'price',headerName: 'price',type: 'number',width: 90,},
 
   ];
   
@@ -32,9 +36,10 @@ const Productslist = () => {
       columns={columns}
       pageSize={10}
       rowsPerPageOptions={[10]}
-      // checkboxSelection
+      checkboxSelection
     />
   </div>
+<center> <button type="submit" className=" text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-10 mb-3 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 relative ">Grand Total = </button></center> 
   </div>
   )
 }
