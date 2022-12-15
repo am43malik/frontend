@@ -1,223 +1,248 @@
-import { Autocomplete, Button, Container, Stack, TextField } from '@mui/material'
-import React from 'react'
-import { DataGrid } from '@mui/x-data-grid';
+import {
+  Autocomplete,
+  Button,
+  Container,
+  Stack,
+  TextField,
+} from "@mui/material";
+import React, { useState } from "react";
+import { DataGrid } from "@mui/x-data-grid";
+import { useEffect } from "react";
+import axios from "axios";
+import { Controller, useForm  } from "react-hook-form";
+
+
 const top100Films = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-    { label: 'The Dark Knight', year: 2008 },
-    { label: '12 Angry Men', year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: 'Pulp Fiction', year: 1994 },
-    {
-      label: 'The Lord of the Rings: The Return of the King',
-      year: 2003,
-    },
-    { label: 'The Good, the Bad and the Ugly', year: 1966 },
-    { label: 'Fight Club', year: 1999 },
-    {
-      label: 'The Lord of the Rings: The Fellowship of the Ring',
-      year: 2001,
-    },
-    {
-      label: 'Star Wars: Episode V - The Empire Strikes Back',
-      year: 1980,
-    },
-    { label: 'Forrest Gump', year: 1994 },
-    { label: 'Inception', year: 2010 },
-    {
-      label: 'The Lord of the Rings: The Two Towers',
-      year: 2002,
-    },
-    { label: "One Flew Over the Cuckoo's Nest", year: 1975 },
-    { label: 'Goodfellas', year: 1990 },
-    { label: 'The Matrix', year: 1999 },
-    { label: 'Seven Samurai', year: 1954 },
-    {
-      label: 'Star Wars: Episode IV - A New Hope',
-      year: 1977,
-    },
-    { label: 'City of God', year: 2002 },
-    { label: 'Se7en', year: 1995 },
-    { label: 'The Silence of the Lambs', year: 1991 },
-    { label: "It's a Wonderful Life", year: 1946 },
-    { label: 'Life Is Beautiful', year: 1997 },
-    { label: 'The Usual Suspects', year: 1995 },
-    { label: 'Léon: The Professional', year: 1994 },
-    { label: 'Spirited Away', year: 2001 },
-    { label: 'Saving Private Ryan', year: 1998 },
-    { label: 'Once Upon a Time in the West', year: 1968 },
-    { label: 'American History X', year: 1998 },
-    { label: 'Interstellar', year: 2014 },
-    { label: 'Casablanca', year: 1942 },
-    { label: 'City Lights', year: 1931 },
-    { label: 'Psycho', year: 1960 },
-    { label: 'The Green Mile', year: 1999 },
-    { label: 'The Intouchables', year: 2011 },
-    { label: 'Modern Times', year: 1936 },
-    { label: 'Raiders of the Lost Ark', year: 1981 },
-    { label: 'Rear Window', year: 1954 },
-    { label: 'The Pianist', year: 2002 },
-    { label: 'The Departed', year: 2006 },
-    { label: 'Terminator 2: Judgment Day', year: 1991 },
-    { label: 'Back to the Future', year: 1985 },
-    { label: 'Whiplash', year: 2014 },
-    { label: 'Gladiator', year: 2000 },
-    { label: 'Memento', year: 2000 },
-    { label: 'The Prestige', year: 2006 },
-    { label: 'The Lion King', year: 1994 },
-    { label: 'Apocalypse Now', year: 1979 },
-    { label: 'Alien', year: 1979 },
-    { label: 'Sunset Boulevard', year: 1950 },
-    {
-      label: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
-      year: 1964,
-    },
-    { label: 'The Great Dictator', year: 1940 },
-    { label: 'Cinema Paradiso', year: 1988 },
-    { label: 'The Lives of Others', year: 2006 },
-    { label: 'Grave of the Fireflies', year: 1988 },
-    { label: 'Paths of Glory', year: 1957 },
-    { label: 'Django Unchained', year: 2012 },
-    { label: 'The Shining', year: 1980 },
-    { label: 'WALL·E', year: 2008 },
-    { label: 'American Beauty', year: 1999 },
-    { label: 'The Dark Knight Rises', year: 2012 },
-    { label: 'Princess Mononoke', year: 1997 },
-    { label: 'Aliens', year: 1986 },
-    { label: 'Oldboy', year: 2003 },
-    { label: 'Once Upon a Time in America', year: 1984 },
-    { label: 'Witness for the Prosecution', year: 1957 },
-    { label: 'Das Boot', year: 1981 },
-    { label: 'Citizen Kane', year: 1941 },
-    { label: 'North by Northwest', year: 1959 },
-    { label: 'Vertigo', year: 1958 },
-    {
-      label: 'Star Wars: Episode VI - Return of the Jedi',
-      year: 1983,
-    },
-    { label: 'Reservoir Dogs', year: 1992 },
-    { label: 'Braveheart', year: 1995 },
-    { label: 'M', year: 1931 },
-    { label: 'Requiem for a Dream', year: 2000 },
-    { label: 'Amélie', year: 2001 },
-    { label: 'A Clockwork Orange', year: 1971 },
-    { label: 'Like Stars on Earth', year: 2007 },
-    { label: 'Taxi Driver', year: 1976 },
-    { label: 'Lawrence of Arabia', year: 1962 },
-    { label: 'Double Indemnity', year: 1944 },
-    {
-      label: 'Eternal Sunshine of the Spotless Mind',
-      year: 2004,
-    },
-    { label: 'Amadeus', year: 1984 },
-    { label: 'To Kill a Mockingbird', year: 1962 },
-    { label: 'Toy Story 3', year: 2010 },
-    { label: 'Logan', year: 2017 },
-    { label: 'Full Metal Jacket', year: 1987 },
-    { label: 'Dangal', year: 2016 },
-    { label: 'The Sting', year: 1973 },
-    { label: '2001: A Space Odyssey', year: 1968 },
-    { label: "Singin' in the Rain", year: 1952 },
-    { label: 'Toy Story', year: 1995 },
-    { label: 'Bicycle Thieves', year: 1948 },
-    { label: 'The Kid', year: 1921 },
-    { label: 'Inglourious Basterds', year: 2009 },
-    { label: 'Snatch', year: 2000 },
-    { label: '3 Idiots', year: 2009 },
-    { label: 'Monty Python and the Holy Grail', year: 1975 },
-  ];
-  
+  { label: "The Shawshank Redemption", year: 1994 },
+  { label: "The Godfather", year: 1972 },
+];
+
 const columns = [
-    { field: 'id', headerName: 'SrNO', width: 70 },
-    { field: 'productsname', headerName: 'Products name', width: 130 },
-    { field: 'productstype', headerName: 'Products type', width: 130 },
-    {field: 'unit',headerName: 'unit',type: 'number',width: 90,},
-    {field: 'Expiry',headerName: 'Expiry',type: 'number',width: 90,},
-    {field: 'Price',headerName: 'Price',type: 'number',width: 90,},
-    {field: 'Suplire',headerName: 'Suplire name',type: 'number',width: 130,},
-    {field: 'Quantity',headerName: 'Quantity',type: 'number',width: 90,},
-    {field: 'total',headerName: 'total',type: 'number',width: 90,},
-  
-  ];
-  const rows = [
-    { id: 1, productstype: 'Durg', productsname: 'Medicine1', unit: 1.4 },
-    { id: 2, productstype: 'injection', productsname: 'Medicine2', unit: 1.5 },
-    { id: 3, productstype: 'injection', productsname: 'Medicine3', unit: 3.5 },
-    { id: 4, productstype: 'injection', productsname: 'Medicine4', unit: 2.5 },
-    { id: 5, productstype: 'Durg', productsname: 'Medicine5', unit: 5.5 },
-    { id: 6, productstype: 'Durg', productsname: 'Medicine1', unit: 1.4 },
-    { id: 7, productstype: 'injection', productsname: 'Medicine2', unit: 1.5 },
-    { id: 8, productstype: 'injection', productsname: 'Medicine3', unit: 3.5 },
-    { id: 9, productstype: 'injection', productsname: 'Medicine4', unit: 2.5 },
-    { id: 10, productstype: 'Durg', productsname: 'Medicine5', unit: 5.5 },
-    { id: 11, productstype: 'Durg', productsname: 'Medicine1', unit: 1.4 },
-    { id: 12, productstype: 'injection', productsname: 'Medicine2', unit: 1.5 },
-    { id: 13, productstype: 'injection', productsname: 'Medicine3', unit: 3.5 },
-    { id: 14, productstype: 'injection', productsname: 'Medicine4', unit: 2.5 },
-    { id: 15, productstype: 'Durg', productsname: 'Medicine5', unit: 5.5 },
-  
-  ];
+  { field: "id", headerName: "SrNO", width: 70 },
+  { field: "productsname", headerName: "Products name", width: 130 },
+];
+const rows = [
+  { id: 1, productstype: "Durg", productsname: "Medicine1", unit: 1.4 },
+  { id: 2, productstype: "injection", productsname: "Medicine2", unit: 1.5 },
+];
+var ProductsName = [];
+var CompanyNames = [];
+var Units = [];
 const Stockin = () => {
-    return (
-        <div className=''>
-              <h1 className='text-center my-8 font-bold text-2xl'>Stock In</h1>
+  const [products, setProducts] = useState([]);
+  const { register, handleSubmit, control, formState: { errors } } = useForm();
+ 
+  const [data, setData] = useState([{
+    id: 1 ,
+    itemcode: "",
+    suplierNo: "",
+    suplier: "",
+    addproduct: "",
+    productType: "",
+    productUnit: "",
+    Price: "",
+    quantity: "",
+    expriy: ""
+  
+  }])
+ 
+
+
+  useEffect(() => {
+    allProduct();
+    onSubmit()
+  }, []);
+
+
+   const onSubmit = async (data,event) =>{
+     // http://localhost:3000/products
+     try{
+       let result=   await axios.post(`http://localhost:3000/stockIn/ `,data)
+       event.preventDefault();
+     
+    console.log(result.data)
+   }
+   catch(err){
+console.log(err,'dfs')
+   }
+    
+    
+  }
+
+  const allProduct = async () => {
+    const res = await axios.get("http://localhost:3000/products");
+    setProducts(res.data);
+    // console.log(res.data);
+    if (res.data.length != 0) {
+      res.data.map((item) => {
+        ProductsName.push(item.ProductName);
+        CompanyNames.push(item.CompanyName);
+        Units.push(item.Unit);
+       
+        // console.log(item.ProductName);
+      });
+    }
+  };
+
+
+
+
+  return (
+    <div className="">
+       <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        {products.length != 0 ? (
+          <div>
+            <h1 className="text-center my-8 font-bold text-2xl">Stock In</h1>
             <Container>
-            <Stack direction="row" spacing={2}>
-        <TextField type="number" sx={{width:200}} id="outlined-basic" label="Item code " variant="outlined"  />
-        <TextField type="number" sx={{width:200}} id="outlined-basic" label="Supplier Doc No" variant="outlined"  />
+              <Stack direction="row" spacing={2}>
+                <TextField
+                  type="number"
+                  sx={{ width: 200 }}
+                  id="outlined-basic"
+                  label="Item code "
+                  variant="outlined"
+                  {...register("itemcode", { required: true, maxLength: 20 })}
+                />
+                <TextField
+                  type="number"
+                  sx={{ width: 200 }}
+                  id="outlined-basic"
+                  label="Supplier Doc No"
+                  variant="outlined"
+                  {...register("suplierNo", { required: true, maxLength: 20 })}
+                />
 
-            <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={top100Films}
-          sx={{ width: 200 }}
-          renderInput={(params) => <TextField {...params} label="Supplire" />}
-        />
-            <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={top100Films}
-          sx={{ width: 200 }}
-          renderInput={(params) => <TextField  {...params} label="Add Products " />}
-        />
-          
-            <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={top100Films}
-          sx={{ width: 200 }}
-          renderInput={(params) => <TextField {...params} label="Product Type" />}
-        />
-    
-        </Stack>
-        <Stack direction="row" spacing={2} mt="10px">
-    
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={top100Films}
-          sx={{ width: 200 }}
-          renderInput={(params) => <TextField {...params} label="Product Unit" />}
-          
-        />
-        <TextField type="number" sx={{width:200}} id="outlined-basic" label="Price" variant="outlined"  />
-        <TextField type="number" sx={{width:200}} id="outlined-basic" label="QUANTITY" variant="outlined"  />
-        <TextField type="number" sx={{width:200}} id="outlined-basic" label="Expiry" variant="outlined"  />
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  getOptionLabel={(ProductsName) => ProductsName || ""}
 
-    
-    
-    
-        </Stack>
-        <div className='mt-3 ali'>
-    
-      <center>  <Button variant="contained" alignItems="center">Submit</Button></center> 
-        </div>
-    
-            </Container>
-    <div className='mx-3'>
+                  options={ProductsName}
+                  sx={{ width: 200 }}
+                  //  {...register("suplier", { required: true, maxLength: 20 })}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Supplire" />
+                  )}
+                />
+
+
+
+
+
+
+
+
+
+                <Autocomplete
            
-     <div style={{ height: 800, width: '100%', marginTop:'10px', padding:'5px'}}>
+                  id="combo-box-demo"
+                 
+                  getOptionLabel={(ProductsName) => ProductsName || ""}
+                 
+                  options={ProductsName}
+                
+                  sx={{ width: 200 }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Add Products " />
+                  )}
+                //  {...register("addproduct", { required: true, maxLength: 20 })}
+                />
+
+
+                      
+
+
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                 
+                  getOptionLabel={(ProductsName) => ProductsName || ""}
+                  
+                  options={ProductsName}
+                  filterSelectedOptions
+                  sx={{ width: 200 }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Product Type" />
+                  )}
+                   // {...register("productType", { required: true, maxLength: 20 })}
+                />
+
+
+              </Stack>
+              <Stack direction="row" spacing={2} mt="10px">
+          
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  name="Product Unit"
+                  control={control}
+                  options={Units} 
+                  type="number"
+                  getOptionLabel={(ProductsName) => ProductsName || ""}
+                
+                  
+                  sx={{ width: 200 }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Product Unit" />
+                  )}
+                  {...register("ProductUnit")} 
+                />
+             
+            
+     
+                   
+                <TextField
+                  {...register("Price")} 
+                   type="number"
+                  name="Price"
+                  sx={{ width: 200 }}
+                  id="outlined-basic"
+                   label="Price"
+                  variant="outlined"
+                  {...register("Price", { required: true, maxLength: 20 })}
+                />
+                
+                <TextField
+                  type="number"
+                  sx={{ width: 200 }}
+                  id="outlined-basic"
+                  label="QUANTITY"
+                  variant="outlined"
+                  {...register("quantity", { required: true, maxLength: 20 })}
+
+                />
+                <TextField
+                  type="number"
+                  sx={{ width: 200 }}
+                  id="outlined-basic"
+                  label="Expiry"
+                  variant="outlined"
+                  {...register("expriy", { required: true, maxLength: 20 })}
+                />
+              </Stack>
+              <div className="mt-3 ali">
+                <center>
+                  
+                  <Button type="submit" variant="contained" alignitems="center">
+                    Submit
+                  </Button>
+                </center>
+              </div>
+            </Container>
+          </div>
+        ) : null}
+      </div>
+
+      <div className="mx-3">
+        <div
+          style={{
+            height: 800,
+            width: "100%",
+            marginTop: "10px",
+            padding: "5px",
+          }}
+        >
           <DataGrid
             rows={rows}
             columns={columns}
@@ -226,10 +251,15 @@ const Stockin = () => {
             // checkboxSelection
           />
         </div>
-    
-        </div>
-      <center> <button type="submit" className=" text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-10 mb-1 mt-1 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 relative ">Print </button></center> 
-        </div>
-      )
-}
-export default Stockin
+      </div>
+      <center>
+     
+        <button  className=" text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-10 mb-1 mt-1 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 relative ">
+          Print
+        </button>
+      </center>
+      </form>
+    </div>
+  );
+};
+export default Stockin;

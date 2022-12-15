@@ -1,0 +1,10 @@
+
+    {
+        "products": [
+          { "id": 1, "Product Name": "tharb-medicine", "Company Name": "Tharb" ,"Unit":"3.2"}
+        ],
+        "suppliers": [
+          { "id": 1, "Company Name": "Tharb-suplier", "Location": "qater Area" }
+        ],
+        "location": { "Location Name": "Qater","Trainer Name":"A.R","Doctor Name":"A.R" }
+      }
