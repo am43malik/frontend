@@ -15,8 +15,13 @@ import Stockin from "./component/Pharmacy/Stockin";
 import Productslist from "./component/Pharmacy/Productslist";
 import Stockinprint from "./component/Pharmacy/Stockinprint";
 import Stockoutprint from "./component/Pharmacy/Stockoutprint";
-import Stockinoutput from "./component/Pharmacy/Stockinoutput";
-import Stockoutoutput from "./component/Pharmacy/Stockoutoutput";
+import Transactionlist from "./component/Pharmacy/Transactionlist";
+import Stockininfo from "./component/Pharmacy/Stockininfo";
+import Stockoutinfo from "./component/Pharmacy/Stockoutinfo";
+import Monthlyreport from "./component/Pharmacy/Monthlyreport";
+import Stockinventoty from "./component/Pharmacy/Stockinventoty";
+import Stockoutsearch from "./component/Pharmacy/Stockoutsearch";
+import Stockoutdetails from "./component/Pharmacy/Stockoutdetails";
 function App() {
   return (
     <div className="App">
@@ -43,10 +48,15 @@ function App() {
         <Route  path="/stockin" element={<Stockin/>} />
         <Route  path="/stockout" element={<Stockout/>} />
         <Route  path="/stockinprint" element={<Stockinprint/>} />
+        <Route  path="/transactionlist" element={<Transactionlist/>} />
         <Route  path="/stockoutprint" element={<Stockoutprint/>} />
-        <Route  path="/stockinoutput" element={<Stockinoutput/>} />
-        <Route  path="/stockoutoutput" element={<Stockoutoutput/>} />
-
+        <Route  path="/stockininfo" element={<Stockininfo/>} />
+        <Route  path="/stockoutinfo" element={<Stockoutinfo/>} />
+        <Route  path="/monthlyreport" element={<Monthlyreport/>} />
+        <Route  path="/stockinventoty" element={<Stockinventoty/>} />
+        <Route  path="/stockinventoty" element={<Stockoutsearch/>} />
+        <Route  path="/stockoutdetails" element={<Stockoutdetails/>} />
+ 
 
         <Route  path="/demo" element={<Demo/>} />
     </Routes>

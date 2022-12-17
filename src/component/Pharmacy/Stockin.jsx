@@ -70,6 +70,7 @@ const Stockin = () => {
    if( stock.length !=0 && stock !=''){
     const result= await axios.post('http://localhost:3000/stockIn',stock)
     console.log(result,'dsfgsd')
+    window.location.reload(false);
    }
    else{
     alert('No data')
@@ -247,8 +248,8 @@ const Stockin = () => {
                 // {console.log(data)}
                 // getRowId={(id) => id}
                 columns={columns}
-                pageSize={10}
-                rowsPerPageOptions={[10]}
+                pageSize={100}
+                rowsPerPageOptions={[100]}
                 // checkboxSelection
               />
             {/* // ) : null} */}

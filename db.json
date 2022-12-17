@@ -57,12 +57,6 @@
       "id": 3
     },
     {
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
       "itemcode": "-2",
       "suplierNo": "-2",
       "ProductUnit": "",
@@ -97,6 +91,78 @@
       "quantity": "2",
       "expriy": "-2",
       "id": 9
+    },
+    {
+      "itemcode": "-1",
+      "suplierNo": "-1",
+      "ProductUnit": "",
+      "Price": "33",
+      "quantity": "2",
+      "expriy": "-2",
+      "id": 10
+    },
+    {
+      "itemcode": "2",
+      "suplierNo": "2",
+      "ProductUnit": "",
+      "Price": "-1",
+      "quantity": "-2",
+      "expriy": "2",
+      "id": 11
+    },
+    {
+      "itemcode": "2",
+      "suplierNo": "3",
+      "ProductUnit": "",
+      "Price": "33",
+      "quantity": "-2",
+      "expriy": "2",
+      "id": 12
+    },
+    {
+      "itemcode": "2",
+      "suplierNo": "-2",
+      "ProductUnit": "",
+      "Price": "-2",
+      "quantity": "-2",
+      "expriy": "2",
+      "id": 13
+    },
+    {
+      "itemcode": "1",
+      "suplierNo": "-1",
+      "ProductUnit": "",
+      "Price": "-1",
+      "quantity": "-1",
+      "expriy": "-1",
+      "id": 14
+    },
+    {
+      "itemcode": "2",
+      "suplierNo": "2",
+      "ProductUnit": "",
+      "Price": "2",
+      "quantity": "-2",
+      "expriy": "-2",
+      "id": 15
+    },
+    {
+      "itemcode": "-2",
+      "suplierNo": "-2",
+      "ProductUnit": "",
+      "Price": "2",
+      "quantity": "2",
+      "expriy": "-2",
+      "id": 16
+    },
+    {
+      "itemcode": "-5",
+      "suplierNo": "1",
+      "ProductUnit": "",
+      "Price": "2",
+      "quantity": "4",
+      "expriy": "3",
+      "id": 17
     }
   ]
 }
