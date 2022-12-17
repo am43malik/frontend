@@ -7,13 +7,7 @@
       "Unit": "3.1"
     },
     {
-      "id": 1,
-      "ProductName": "Medicine2",
-      "CompanyName": "Tharb",
-      "Unit": "3.2"
-    },
-    {
-      "id": 1,
+      "id": 2,
       "ProductName": "Medicine3",
       "CompanyName": "Tharb",
       "Unit": "3.3"
@@ -21,7 +15,7 @@
   ],
   "suppliers": [
     {
-      "id": 1,
+      "id": 23,
       "CompanyName": "Tharb-suplier",
       "Location": "qater Area"
     }
@@ -33,43 +27,76 @@
   },
   "stockIn": [
     {
-      "id": "",
-      "itemcode": "",
-      "suplierNo": "",
-      "suplier": "",
-      "addproduct": "",
-      "productType": "",
-      "productUnit": "",
-      "Price": "",
-      "quantity": "",
-      "expriy": ""
+      "id": 1,
+      "itemcode": "itemcode",
+      "suplierNo": "suplierNo",
+      "suplier": "suplier",
+      "addproduct": "addproduct",
+      "productType": "productType",
+      "productUnit": "productUnit",
+      "Price": "Price",
+      "quantity": "quantity",
+      "expriy": "expriy"
     },
     {
-      "itemcode": "2",
+      "itemcode": "-1",
+      "suplierNo": "-2",
+      "ProductUnit": "",
+      "Price": "33",
+      "quantity": "-2",
+      "expriy": "-2",
+      "id": 2
+    },
+    {
+      "itemcode": "-3",
+      "suplierNo": "-5",
+      "ProductUnit": "",
+      "Price": "33",
+      "quantity": "-2",
+      "expriy": "-2",
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "itemcode": "-2",
       "suplierNo": "-2",
       "ProductUnit": "",
       "Price": "33",
       "quantity": "2",
       "expriy": "2",
-      "id": "F0NYZB1"
+      "id": 6
     },
     {
       "itemcode": "2",
-      "suplierNo": "-2",
+      "suplierNo": "2",
       "ProductUnit": "",
       "Price": "33",
-      "quantity": "2",
-      "expriy": "2",
-      "id": "2n8rZch"
+      "quantity": "-1",
+      "expriy": "1",
+      "id": 7
     },
     {
       "itemcode": "2",
-      "suplierNo": "-2",
+      "suplierNo": "2",
+      "ProductUnit": "",
+      "Price": "33",
+      "quantity": "-1",
+      "expriy": "1",
+      "id": 8
+    },
+    {
+      "itemcode": "-1",
+      "suplierNo": "1",
       "ProductUnit": "",
       "Price": "33",
       "quantity": "2",
-      "expriy": "2",
-      "id": "u-G_jT-"
+      "expriy": "-2",
+      "id": 9
     }
   ]
 }
