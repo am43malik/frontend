@@ -27,142 +27,16 @@
   },
   "stockIn": [
     {
-      "id": 1,
-      "itemcode": "itemcode",
-      "suplierNo": "suplierNo",
-      "suplier": "suplier",
-      "addproduct": "addproduct",
-      "productType": "productType",
-      "productUnit": "productUnit",
-      "Price": "Price",
-      "quantity": "quantity",
-      "expriy": "expriy"
-    },
-    {
-      "itemcode": "-1",
-      "suplierNo": "-2",
-      "ProductUnit": "",
+      "suplier": "Medicine1",
+      "addproduct": "Medicine3",
+      "typeproduct": "Medicine1",
+      "itemcode": "2",
+      "suplierNo": "2",
       "Price": "33",
-      "quantity": "-2",
-      "expriy": "-2",
+      "quantity": "2",
+      "expriy": "2",
+      "productunit": "3.3",
       "id": 2
-    },
-    {
-      "itemcode": "-3",
-      "suplierNo": "-5",
-      "ProductUnit": "",
-      "Price": "33",
-      "quantity": "-2",
-      "expriy": "-2",
-      "id": 3
-    },
-    {
-      "itemcode": "-2",
-      "suplierNo": "-2",
-      "ProductUnit": "",
-      "Price": "33",
-      "quantity": "2",
-      "expriy": "2",
-      "id": 6
-    },
-    {
-      "itemcode": "2",
-      "suplierNo": "2",
-      "ProductUnit": "",
-      "Price": "33",
-      "quantity": "-1",
-      "expriy": "1",
-      "id": 7
-    },
-    {
-      "itemcode": "2",
-      "suplierNo": "2",
-      "ProductUnit": "",
-      "Price": "33",
-      "quantity": "-1",
-      "expriy": "1",
-      "id": 8
-    },
-    {
-      "itemcode": "-1",
-      "suplierNo": "1",
-      "ProductUnit": "",
-      "Price": "33",
-      "quantity": "2",
-      "expriy": "-2",
-      "id": 9
-    },
-    {
-      "itemcode": "-1",
-      "suplierNo": "-1",
-      "ProductUnit": "",
-      "Price": "33",
-      "quantity": "2",
-      "expriy": "-2",
-      "id": 10
-    },
-    {
-      "itemcode": "2",
-      "suplierNo": "2",
-      "ProductUnit": "",
-      "Price": "-1",
-      "quantity": "-2",
-      "expriy": "2",
-      "id": 11
-    },
-    {
-      "itemcode": "2",
-      "suplierNo": "3",
-      "ProductUnit": "",
-      "Price": "33",
-      "quantity": "-2",
-      "expriy": "2",
-      "id": 12
-    },
-    {
-      "itemcode": "2",
-      "suplierNo": "-2",
-      "ProductUnit": "",
-      "Price": "-2",
-      "quantity": "-2",
-      "expriy": "2",
-      "id": 13
-    },
-    {
-      "itemcode": "1",
-      "suplierNo": "-1",
-      "ProductUnit": "",
-      "Price": "-1",
-      "quantity": "-1",
-      "expriy": "-1",
-      "id": 14
-    },
-    {
-      "itemcode": "2",
-      "suplierNo": "2",
-      "ProductUnit": "",
-      "Price": "2",
-      "quantity": "-2",
-      "expriy": "-2",
-      "id": 15
-    },
-    {
-      "itemcode": "-2",
-      "suplierNo": "-2",
-      "ProductUnit": "",
-      "Price": "2",
-      "quantity": "2",
-      "expriy": "-2",
-      "id": 16
-    },
-    {
-      "itemcode": "-5",
-      "suplierNo": "1",
-      "ProductUnit": "",
-      "Price": "2",
-      "quantity": "4",
-      "expriy": "3",
-      "id": 17
     }
   ]
 }
