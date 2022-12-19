@@ -37,13 +37,12 @@ const columns = [
   { field: "quantity", headerName: " Quantity", width: 130 },
   { field: "expriy", headerName: " Expriy", width: 130 },
 ];
-// const array=[]
-var row = [];
-// var id=[]
+//  var array=[]
+var b=[]
 var ProductsName = [];
 var CompanyNames = [];
 var Units = [];
-//  var obj = [];
+
 const Stockin = () => {
   const [products, setProducts] = useState([]);
   const [item, setItem] = useState([]);
@@ -54,8 +53,7 @@ const Stockin = () => {
   const [array ,setArray]=useState([])
   // const [obj ,setObj]=useState([])
 
- var grandTotal=[]
-// var obj={}
+
   const {
     register,
     handleSubmit,
@@ -82,11 +80,13 @@ const Stockin = () => {
    }
   //  setArray(obj)
 array.push(obj)
+console.log(obj,'obj')
  
 
   };
   const handelclick=()=>{
-  console.log(array,'arraynew')
+  b.push(array)
+  console.log(b,'b')
   }
   const allProduct = async () => {
     const res = await axios.get("http://localhost:3000/products");
@@ -238,7 +238,9 @@ array.push(obj)
               </Stack>
               <div className="mt-3 ali">
                 <center>
-                  <Button  onClick={handelclick} variant="contained" alignitems="center">
+                  <Button  
+                   onClick={handelclick} 
+                  variant="contained" alignitems="center">
                     Submit
                   </Button>
                 </center>
@@ -312,13 +314,13 @@ array.push(obj)
               <TableCell align="right">{row.quantity * row.Price }</TableCell>
 
               <TableCell align="right">
-              <button align="right" onClick={()=>{
+              {/* <button align="right" onClick={()=>{
            setArray(array.filter((i)=> row.suplierNo !== i.suplierNo))
           //  alert(id)
               }}>
           
              <DeleteIcon/>
-              </button>
+              </button> */}
               </TableCell>
 
              
